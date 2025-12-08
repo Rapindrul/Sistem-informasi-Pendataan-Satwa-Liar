@@ -1,0 +1,19 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="Tes Data Base" />
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="Pendataan Satwa Liar/bin/Debug/Satwa.db" />
+  </Folder>
+  <Project Path="Pendataan Satwa Liar/Pendataan Satwa Liar.csproj" Id="b4e2dfc4-f88d-4052-821e-55ac5e3a71a2">
+    <BuildType Solution="Tes Data Base|Any CPU" Project="Release" />
+    <BuildType Solution="Tes Data Base|x64" Project="Debug" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Build Solution="Release|x64" Project="false" />
+    <Build Solution="Tes Data Base|Any CPU" Project="false" />
+  </Project>
+</Solution>
