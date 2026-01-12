@@ -116,7 +116,7 @@
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click_1);
+
             // 
             // btnHapus
             // 
@@ -135,7 +135,7 @@
             this.btnBersihkan.TabIndex = 9;
             this.btnBersihkan.Text = "Bersihkan";
             this.btnBersihkan.UseVisualStyleBackColor = true;
-            this.btnBersihkan.Click += new System.EventHandler(this.btnBersihkan_Click);
+      
             // 
             // dataGridViewSatwa
             // 
@@ -146,7 +146,7 @@
             this.dataGridViewSatwa.RowTemplate.Height = 24;
             this.dataGridViewSatwa.Size = new System.Drawing.Size(354, 150);
             this.dataGridViewSatwa.TabIndex = 10;
-            this.dataGridViewSatwa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSatwa_CellContentClick);
+    
             // 
             // FormDataSatwa
             // 
@@ -166,7 +166,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormDataSatwa";
             this.Text = "Form Data Satwa";
-            this.Load += new System.EventHandler(this.FormDataSatwa_Load);
+         
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSatwa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

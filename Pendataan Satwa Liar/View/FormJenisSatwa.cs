@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar
 {
-    public partial class Form_User : Form
+    public partial class FormJenisSatwa : Form
     {
-        public Form_User()
+        public FormJenisSatwa()
         {
             InitializeComponent();
         }
 
-        private void dataGridViewSatwa_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pendataan_Satwa_Liar
+namespace Pendataan_Satwa_Liar.View
 {
-    public partial class Form_Habitat : Form
+    public partial class FormLaporanUser : Form
     {
-        public Form_Habitat()
+        public FormLaporanUser()
         {
             InitializeComponent();
         }
