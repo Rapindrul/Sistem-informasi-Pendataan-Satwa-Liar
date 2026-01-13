@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Pendataan_Satwa_Liar.Model.Entities;
 using Pendataan_Satwa_Liar.Model.Repository;
-using Pendataan_Satwa_Liar.View;   
+using Pendataan_Satwa_Liar.Model;      // <- AppDbContext
+using Pendataan_Satwa_Liar.View;
 
 namespace Pendataan_Satwa_Liar.Controller
 {
@@ -14,17 +11,22 @@ namespace Pendataan_Satwa_Liar.Controller
         private readonly FormUser _view;
         private readonly UserRepo _repo;
         private readonly User _currentUser;
+        private readonly AppDbContext _context;
 
         public UserController(FormUser view, User currentUser)
         {
             _view = view;
             _currentUser = currentUser;
-            _repo = new UserRepo();
 
-            // daftarkan event dari view
+            _context = new AppDbContext();
+            _repo = new UserRepo(_context);
+
             _view.Load += View_Load;
             _view.BtnEditClick += BtnEdit_Click;
             _view.BtnHapusClick += BtnHapus_Click;
+
+            // penting: tutup context saat form ditutup
+            _view.FormClosed += (s, e) => _context.Dispose();
         }
 
         private void View_Load(object sender, EventArgs e)
@@ -47,7 +49,6 @@ namespace Pendataan_Satwa_Liar.Controller
             var selected = _view.GetSelectedUser();
             if (selected == null) return;
 
-            // TODO: bisa buka dialog edit, lalu:
             _repo.Update(selected);
             _view.SetUserGridData(_repo.GetAll());
         }

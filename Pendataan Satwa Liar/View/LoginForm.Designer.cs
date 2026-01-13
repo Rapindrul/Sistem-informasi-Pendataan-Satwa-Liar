@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtLoginUsername = new System.Windows.Forms.TextBox();
-            this.txtLoginPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,21 +43,20 @@
             this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // txtLoginUsername
+            // txtUsername
             // 
-            this.txtLoginUsername.Location = new System.Drawing.Point(142, 70);
-            this.txtLoginUsername.Name = "txtLoginUsername";
-            this.txtLoginUsername.Size = new System.Drawing.Size(100, 22);
-            this.txtLoginUsername.TabIndex = 1;
+            this.txtUsername.Location = new System.Drawing.Point(142, 70);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(100, 22);
+            this.txtUsername.TabIndex = 1;
             // 
-            // txtLoginPassword
+            // txtPassword
             // 
-            this.txtLoginPassword.Location = new System.Drawing.Point(142, 98);
-            this.txtLoginPassword.Name = "txtLoginPassword";
-            this.txtLoginPassword.Size = new System.Drawing.Size(100, 22);
-            this.txtLoginPassword.TabIndex = 3;
+            this.txtPassword.Location = new System.Drawing.Point(142, 98);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(100, 22);
+            this.txtPassword.TabIndex = 3;
             // 
             // label2
             // 
@@ -83,9 +82,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtLoginPassword);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtLoginUsername);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
@@ -97,8 +96,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtLoginUsername;
-        private System.Windows.Forms.TextBox txtLoginPassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
     }

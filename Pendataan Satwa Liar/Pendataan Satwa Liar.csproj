@@ -157,6 +157,12 @@
     <Compile Include="View\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\FormDataSatwa.resx">
       <DependentUpon>FormDataSatwa.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pendataan_Satwa_Liar.Model.Entities
 {
-    internal class LaporanSatwa
+    public class LaporanSatwa
     {
     }
 }

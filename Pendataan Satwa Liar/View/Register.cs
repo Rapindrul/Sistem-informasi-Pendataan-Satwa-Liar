@@ -3,26 +3,23 @@ using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar.View
 {
-    public partial class LoginForm : Form
+    public partial class Register : Form
     {
-        public event EventHandler BtnLoginClick;
-        public event EventHandler btnToRegisterClick;
+        public event EventHandler BtnRegisterClick;
 
-        public LoginForm()
+        public Register()
         {
             InitializeComponent();
 
-            btnLogin.Click += (s, e) => BtnLoginClick?.Invoke(s, e);
-
-            // kalau ada tombol/link ke register
-            // btnToRegister.Click += (s, e) => BtnToRegisterClick?.Invoke(s, e);
-
-            // opsional: password char
+            btnRegister.Click += (s, e) => BtnRegisterClick?.Invoke(s, e);
+            // optional:
             // txtPassword.UseSystemPasswordChar = true;
+            // txtRePassword.UseSystemPasswordChar = true;
         }
 
         public string GetUsername() => txtUsername.Text.Trim();
         public string GetPassword() => txtPassword.Text;
+        public string GetRePassword() => txtRePassword.Text;
 
         public void ShowMessage(string msg)
         {
@@ -33,6 +30,12 @@ namespace Pendataan_Satwa_Liar.View
         {
             txtUsername.Clear();
             txtPassword.Clear();
+            txtRePassword.Clear();
+        }
+
+        private void txt_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
