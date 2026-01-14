@@ -13,6 +13,7 @@ namespace Pendataan_Satwa_Liar.View
             InitializeComponent();
 
             btnLogin.Click += (s, e) => BtnLoginClick?.Invoke(s, e);
+            btnRegis.Click += (s, e) => btnToRegisterClick?.Invoke(s, e);
 
             // kalau ada tombol/link ke register
             // btnToRegister.Click += (s, e) => BtnToRegisterClick?.Invoke(s, e);

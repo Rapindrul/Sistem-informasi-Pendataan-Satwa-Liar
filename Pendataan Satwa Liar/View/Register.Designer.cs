@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRePassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnBacktoLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRegister
@@ -94,11 +95,21 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Re-password:";
             // 
+            // btnBacktoLogin
+            // 
+            this.btnBacktoLogin.Location = new System.Drawing.Point(112, 191);
+            this.btnBacktoLogin.Name = "btnBacktoLogin";
+            this.btnBacktoLogin.Size = new System.Drawing.Size(156, 23);
+            this.btnBacktoLogin.TabIndex = 12;
+            this.btnBacktoLogin.Text = "Back to Login";
+            this.btnBacktoLogin.UseVisualStyleBackColor = true;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBacktoLogin);
             this.Controls.Add(this.txtRePassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegister);
@@ -123,5 +134,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRePassword;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnBacktoLogin;
     }
 }

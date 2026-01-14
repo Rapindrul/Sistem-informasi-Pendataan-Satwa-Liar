@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pendataan_Satwa_Liar.Controller;
+using Pendataan_Satwa_Liar.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,18 +8,21 @@ using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar
 {
-    internal static class Program
+    static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            Application.Run(new FormDataSatwa());
+
+            var login = new LoginForm();
+            var register = new Register();
+            var auth = new AuthController(login, register);
+
+            Application.Run(login);
         }
+
     }
+
 }
