@@ -18,12 +18,31 @@ namespace Pendataan_Satwa_Liar
         public event EventHandler BtnEditClick;
         public event EventHandler BtnHapusClick;
 
-        public FormUser()
+        private readonly User _currentUser;
+
+        // constructor baru untuk dipakai setelah login
+        public FormUser(User currentUser)
         {
             InitializeComponent();
 
+            _currentUser = currentUser;
+
             btnEdit.Click += (s, e) => BtnEditClick?.Invoke(s, e);
             btnHapus.Click += (s, e) => BtnHapusClick?.Invoke(s, e);
+        }
+
+        // kalau constructor tanpa parameter masih mau dipakai designer:
+        public FormUser() : this(new User())
+        {
+        }
+
+        private void FormUser_Load(object sender, EventArgs e)
+        {
+            SetUsername(_currentUser.Username);
+
+            // contoh atur tampilan berdasar role
+            bool isAdmin = _currentUser.Role == "admin";
+            SetAdminMode(isAdmin);
         }
 
         public void SetUsername(string username)
@@ -62,5 +81,6 @@ namespace Pendataan_Satwa_Liar
                    MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
     }
+
 
 }

@@ -95,7 +95,7 @@
     <Compile Include="Controller\SatwaController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\VerifikasiLaporanController.cs" />
-    <Compile Include="Model\DbContext.cs" />
+    <Compile Include="Model\Context\DbContext.cs" />
     <Compile Include="Model\Entities\Habitat.cs" />
     <Compile Include="Model\Entities\JenisSatwa.cs" />
     <Compile Include="Model\Entities\LaporanSatwa.cs" />

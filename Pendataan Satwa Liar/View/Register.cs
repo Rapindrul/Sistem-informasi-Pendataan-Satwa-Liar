@@ -6,12 +6,14 @@ namespace Pendataan_Satwa_Liar.View
     public partial class Register : Form
     {
         public event EventHandler BtnRegisterClick;
+        public event EventHandler BackToLoginClick;
 
         public Register()
         {
             InitializeComponent();
 
             btnRegister.Click += (s, e) => BtnRegisterClick?.Invoke(s, e);
+            btnBacktoLogin.Click += (s, e) => BackToLoginClick?.Invoke(s, e);
             // optional:
             // txtPassword.UseSystemPasswordChar = true;
             // txtRePassword.UseSystemPasswordChar = true;

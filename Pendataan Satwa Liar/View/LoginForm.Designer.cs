@@ -32,6 +32,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRegis = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -67,12 +68,21 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Password:";
             // 
+            // btnRegis
+            // 
+            this.btnRegis.Location = new System.Drawing.Point(86, 141);
+            this.btnRegis.Name = "btnRegis";
+            this.btnRegis.Size = new System.Drawing.Size(75, 23);
+            this.btnRegis.TabIndex = 4;
+            this.btnRegis.Text = "Register";
+            this.btnRegis.UseVisualStyleBackColor = true;
+            // 
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(167, 141);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             // 
@@ -82,6 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnRegis);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtUsername);
@@ -99,6 +110,7 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRegis;
         private System.Windows.Forms.Button btnLogin;
     }
 }
