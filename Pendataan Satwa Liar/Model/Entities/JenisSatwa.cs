@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pendataan_Satwa_Liar.Model
+namespace Pendataan_Satwa_Liar.Model.Entities
 {
     public class JenisSatwa
     {
+        public int JenisSatwaId { get; set; }
+        public string NamaJenis { get; set; }
+        public string Deskripsi { get; set; }
     }
 }
