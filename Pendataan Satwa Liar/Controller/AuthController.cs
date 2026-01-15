@@ -1,4 +1,4 @@
-﻿using Pendataan_Satwa_Liar.Model;
+﻿using Pendataan_Satwa_Liar.Model.Context;  // ✅ Tambahkan ini
 using Pendataan_Satwa_Liar.Model.Entities;
 using Pendataan_Satwa_Liar.Model.Repository;
 using Pendataan_Satwa_Liar.View;
@@ -10,16 +10,16 @@ namespace Pendataan_Satwa_Liar.Controller
     {
         private readonly LoginForm _loginView;
         private readonly Register _registerView;
-        private readonly AppDbContext _context;
-        private readonly UserRepo _userRepo;
+        private DbContext _context;  // ✅ Ganti dari AppDbContext
+        private UserRepo _userRepo;  // ✅ Ganti dari UserRepo
 
         public AuthController(LoginForm loginView, Register registerView)
         {
             _loginView = loginView;
             _registerView = registerView;
 
-            _context = new AppDbContext();
-            _userRepo = new UserRepo(_context);
+            _context = new DbContext();  // ✅ Ganti dari AppDbContext
+            _userRepo = new UserRepo(_context);  // ✅ Ganti dari UserRepo
 
             // dari LoginForm
             _loginView.BtnLoginClick += BtnLogin_Click;
@@ -30,16 +30,13 @@ namespace Pendataan_Satwa_Liar.Controller
             _registerView.BackToLoginClick += BtnBackLogin_Click;
         }
 
-
         // ====== Navigasi antara Login dan Register ======
-
         private void BtnGoRegister_Click(object sender, EventArgs e)
         {
             _loginView.Hide();
             _registerView.ClearInput();
             _registerView.Show();
         }
-
 
         private void BtnBackLogin_Click(object sender, EventArgs e)
         {
@@ -49,7 +46,6 @@ namespace Pendataan_Satwa_Liar.Controller
         }
 
         // ====== Register ======
-
         private void BtnRegister_Click(object sender, EventArgs e)
         {
             var username = _registerView.GetUsername();
@@ -83,16 +79,22 @@ namespace Pendataan_Satwa_Liar.Controller
                 Role = "user"      // default user biasa
             };
 
-            _userRepo.Add(u);
+            var result = _userRepo.Add(u);  // ✅ Simpan result
 
-            _registerView.ShowMessage("Register berhasil, silakan login.");
-            _registerView.Hide();
-            _loginView.ClearInput();
-            _loginView.Show();
+            if (result > 0)
+            {
+                _registerView.ShowMessage("Register berhasil, silakan login.");
+                _registerView.Hide();
+                _loginView.ClearInput();
+                _loginView.Show();
+            }
+            else
+            {
+                _registerView.ShowMessage("Register gagal!");
+            }
         }
 
         // ====== Login ======
-
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             var username = _loginView.GetUsername();
@@ -114,7 +116,7 @@ namespace Pendataan_Satwa_Liar.Controller
 
             // buka FormUser dengan user yang login
             var view = new FormUser(user);
-            var controller = new UserController(view, user); // kalau kamu pakai
+            var controller = new UserController(view, user);
             view.Show();
             _loginView.Hide();
         }

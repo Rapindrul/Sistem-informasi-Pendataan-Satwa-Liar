@@ -12,11 +12,25 @@ namespace Pendataan_Satwa_Liar.View
         {
             InitializeComponent();
 
+            // Wire button events
             btnRegister.Click += (s, e) => BtnRegisterClick?.Invoke(s, e);
             btnBacktoLogin.Click += (s, e) => BackToLoginClick?.Invoke(s, e);
-            // optional:
-            // txtPassword.UseSystemPasswordChar = true;
-            // txtRePassword.UseSystemPasswordChar = true;
+
+            // Password masking
+            txtPassword.UseSystemPasswordChar = true;
+            txtRePassword.UseSystemPasswordChar = true;
+
+            // Auto focus ke username saat load
+            this.Load += (s, e) => txtUsername.Focus();
+
+            // Enter key support
+            txtRePassword.KeyPress += (s, e) =>
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    BtnRegisterClick?.Invoke(s, e);
+                }
+            };
         }
 
         public string GetUsername() => txtUsername.Text.Trim();
@@ -33,11 +47,7 @@ namespace Pendataan_Satwa_Liar.View
             txtUsername.Clear();
             txtPassword.Clear();
             txtRePassword.Clear();
-        }
-
-        private void txt_Load(object sender, EventArgs e)
-        {
-
+            txtUsername.Focus();  // Kembali ke username setelah clear
         }
     }
 }

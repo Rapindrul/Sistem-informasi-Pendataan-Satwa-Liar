@@ -1,7 +1,7 @@
 ﻿using System;
+using Pendataan_Satwa_Liar.Model.Context;
 using Pendataan_Satwa_Liar.Model.Entities;
 using Pendataan_Satwa_Liar.Model.Repository;
-using Pendataan_Satwa_Liar.Model;      // <- AppDbContext
 using Pendataan_Satwa_Liar.View;
 
 namespace Pendataan_Satwa_Liar.Controller
@@ -9,17 +9,17 @@ namespace Pendataan_Satwa_Liar.Controller
     public class UserController
     {
         private readonly FormUser _view;
-        private readonly UserRepo _repo;
+        private readonly UserRepo _repo;  // ✅ UserRepo sudah benar
         private readonly User _currentUser;
-        private readonly AppDbContext _context;
+        private readonly DbContext _context;  // ✅ DbContext (bukan AppDbContext)
 
         public UserController(FormUser view, User currentUser)
         {
             _view = view;
             _currentUser = currentUser;
 
-            _context = new AppDbContext();
-            _repo = new UserRepo(_context);
+            _context = new DbContext();  // ✅ new DbContext() (bukan AppDbContext)
+            _repo = new UserRepo(_context);  // ✅ UserRepo sudah benar
 
             _view.Load += View_Load;
             _view.BtnEditClick += BtnEdit_Click;
@@ -49,8 +49,11 @@ namespace Pendataan_Satwa_Liar.Controller
             var selected = _view.GetSelectedUser();
             if (selected == null) return;
 
-            _repo.Update(selected);
-            _view.SetUserGridData(_repo.GetAll());
+            var result = _repo.Update(selected);
+            if (result > 0)
+            {
+                _view.SetUserGridData(_repo.GetAll());
+            }
         }
 
         private void BtnHapus_Click(object sender, EventArgs e)
@@ -60,8 +63,11 @@ namespace Pendataan_Satwa_Liar.Controller
 
             if (_view.Confirm("Hapus user ini?"))
             {
-                _repo.Delete(selected.UserId);
-                _view.SetUserGridData(_repo.GetAll());
+                var result = _repo.Delete(selected.UserId);
+                if (result > 0)
+                {
+                    _view.SetUserGridData(_repo.GetAll());
+                }
             }
         }
     }

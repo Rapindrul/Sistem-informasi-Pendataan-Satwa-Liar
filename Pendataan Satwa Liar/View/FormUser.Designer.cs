@@ -1,4 +1,4 @@
-﻿namespace Pendataan_Satwa_Liar
+﻿namespace Pendataan_Satwa_Liar.View
 {
     partial class FormUser
     {
@@ -74,6 +74,7 @@
             this.dgvUser.RowTemplate.Height = 24;
             this.dgvUser.Size = new System.Drawing.Size(738, 241);
             this.dgvUser.TabIndex = 3;
+            this.dgvUser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUser_CellContentClick);
             // 
             // btnEdit
             // 

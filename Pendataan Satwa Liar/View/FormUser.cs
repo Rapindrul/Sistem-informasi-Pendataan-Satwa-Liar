@@ -1,17 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 using Pendataan_Satwa_Liar.Model.Entities;
-using Pendataan_Satwa_Liar.Model.Repository;
 
-namespace Pendataan_Satwa_Liar
+namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
 {
     public partial class FormUser : Form
     {
@@ -20,7 +11,7 @@ namespace Pendataan_Satwa_Liar
 
         private readonly User _currentUser;
 
-        // constructor baru untuk dipakai setelah login
+        // Constructor utama - dipakai setelah login
         public FormUser(User currentUser)
         {
             InitializeComponent();
@@ -29,9 +20,11 @@ namespace Pendataan_Satwa_Liar
 
             btnEdit.Click += (s, e) => BtnEditClick?.Invoke(s, e);
             btnHapus.Click += (s, e) => BtnHapusClick?.Invoke(s, e);
+
+            this.Load += FormUser_Load;
         }
 
-        // kalau constructor tanpa parameter masih mau dipakai designer:
+        // Constructor default untuk Form Designer
         public FormUser() : this(new User())
         {
         }
@@ -40,14 +33,14 @@ namespace Pendataan_Satwa_Liar
         {
             SetUsername(_currentUser.Username);
 
-            // contoh atur tampilan berdasar role
+            // Atur tampilan berdasar role
             bool isAdmin = _currentUser.Role == "admin";
             SetAdminMode(isAdmin);
         }
 
         public void SetUsername(string username)
         {
-            lblUsername.Text = username;
+            lblUsername.Text = $"User: {username}";
         }
 
         public void SetAdminMode(bool isAdmin)
@@ -64,23 +57,39 @@ namespace Pendataan_Satwa_Liar
 
         public User GetSelectedUser()
         {
-            if (dgvUser.CurrentRow == null) return null;
+            if (dgvUser.CurrentRow == null || dgvUser.CurrentRow.Index < 0)
+                return null;
 
-            return new User
+            try
             {
-                UserId = (int)dgvUser.CurrentRow.Cells["UserId"].Value,
-                Username = dgvUser.CurrentRow.Cells["Username"].Value.ToString(),
-                Password = dgvUser.CurrentRow.Cells["Password"].Value.ToString(),
-                Role = dgvUser.CurrentRow.Cells["Role"].Value.ToString()
-            };
+                return new User
+                {
+                    UserId = Convert.ToInt32(dgvUser.CurrentRow.Cells["UserId"].Value),
+                    Username = dgvUser.CurrentRow.Cells["Username"].Value?.ToString() ?? "",
+                    Password = dgvUser.CurrentRow.Cells["Password"].Value?.ToString() ?? "",
+                    Role = dgvUser.CurrentRow.Cells["Role"].Value?.ToString() ?? "user"
+                };
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public bool Confirm(string message)
         {
             return MessageBox.Show(message, "Konfirmasi",
-                   MessageBoxButtons.YesNo) == DialogResult.Yes;
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        public void ShowMessage(string msg)
+        {
+            MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
-
-
 }
