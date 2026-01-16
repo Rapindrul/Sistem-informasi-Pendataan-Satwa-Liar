@@ -46,5 +46,15 @@ namespace Pendataan_Satwa_Liar.View
             txtPassword.Clear();
             txtUsername.Focus();  // Kembali ke username setelah clear
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

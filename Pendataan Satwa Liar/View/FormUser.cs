@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Pendataan_Satwa_Liar.Model.Entities;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
-using Pendataan_Satwa_Liar.Model.Entities;
 
-namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
+namespace Pendataan_Satwa_Liar.View 
 {
     public partial class FormUser : Form
     {
         public event EventHandler BtnEditClick;
         public event EventHandler BtnHapusClick;
+        public event EventHandler BtnLogoutClick;
+        public event EventHandler BtnResetPasswordClick;
+        public event EventHandler BtnLaporClick;
+        public event EventHandler BtnDataSatwaClick;
 
         private readonly User _currentUser;
 
@@ -20,6 +25,11 @@ namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
 
             btnEdit.Click += (s, e) => BtnEditClick?.Invoke(s, e);
             btnHapus.Click += (s, e) => BtnHapusClick?.Invoke(s, e);
+            btnLogout.Click += (s, e) => BtnLogoutClick?.Invoke(s, e);
+            btnResetPw.Click += (s, e) => BtnResetPasswordClick?.Invoke(s, e);
+            btnLapor.Click += (s, e) => BtnLaporClick?.Invoke(s, e);
+            btnSatwa.Click += (s, e) => BtnDataSatwaClick?.Invoke(s, e);
+
 
             this.Load += FormUser_Load;
         }
@@ -40,7 +50,7 @@ namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
 
         public void SetUsername(string username)
         {
-            lblUsername.Text = $"User: {username}";
+            lblUsername.Text = $"Selamat Datang Kembali! {username}";
         }
 
         public void SetAdminMode(bool isAdmin)
@@ -48,11 +58,58 @@ namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
             dgvUser.Visible = isAdmin;
             btnEdit.Visible = isAdmin;
             btnHapus.Visible = isAdmin;
+            btnResetPw.Visible = isAdmin;
         }
 
         public void SetUserGridData(object dataSource)
         {
+
             dgvUser.DataSource = dataSource;
+            StyleDataGridView();
+        }
+
+        private void StyleDataGridView()
+        {
+            if (dgvUser.Columns.Count == 0) return;
+
+            // Header style
+            dgvUser.EnableHeadersVisualStyles = false;
+            dgvUser.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 73, 94); // Dark gray
+            dgvUser.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvUser.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dgvUser.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Row style
+            dgvUser.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgvUser.DefaultCellStyle.BackColor = Color.White;
+            dgvUser.DefaultCellStyle.ForeColor = Color.FromArgb(60, 60, 60);
+            dgvUser.DefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219); // Blue
+            dgvUser.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Alternating row color
+            dgvUser.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+
+            // Column width
+            dgvUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Hide UserId column (kalau ada)
+            if (dgvUser.Columns["UserId"] != null)
+            {
+                dgvUser.Columns["UserId"].Visible = false;
+            }
+
+            // Hide Password column (security!)
+            if (dgvUser.Columns["Password"] != null)
+            {
+                dgvUser.Columns["Password"].Visible = false;  // ✅ Sembunyikan password!
+            }
+
+            // Set column headers yang lebih friendly
+            if (dgvUser.Columns["Username"] != null)
+                dgvUser.Columns["Username"].HeaderText = "Username";
+
+            if (dgvUser.Columns["Role"] != null)
+                dgvUser.Columns["Role"].HeaderText = "Role";
         }
 
         public User GetSelectedUser()
@@ -88,6 +145,12 @@ namespace Pendataan_Satwa_Liar.View  // ✅ Fix namespace
         }
 
         private void dgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

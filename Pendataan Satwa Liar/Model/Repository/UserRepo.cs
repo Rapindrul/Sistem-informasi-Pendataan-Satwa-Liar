@@ -246,25 +246,19 @@ namespace Pendataan_Satwa_Liar.Model.Repository
 
             try
             {
-                // deklarasi perintah SQL - SESUAI DATABASE
                 string sql = @"SELECT user_id, username, password, role 
-                              FROM User 
-                              WHERE username = @username AND password = @password";
+                      FROM User 
+                      WHERE username = @username AND password = @password";
 
-                // membuat objek command menggunakan blok using
                 using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 {
-                    // mendaftarkan parameter dan mengeset nilainya
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
 
-                    // membuat objek dtr (data reader) untuk menampung result set
                     using (SQLiteDataReader dtr = cmd.ExecuteReader())
                     {
-                        // panggil method Read untuk mendapatkan baris dari result set
                         if (dtr.Read())
                         {
-                            // proses konversi dari row result set ke object
                             user = new User();
                             user.UserId = Convert.ToInt32(dtr["user_id"]);
                             user.Username = dtr["username"].ToString();
@@ -277,9 +271,11 @@ namespace Pendataan_Satwa_Liar.Model.Repository
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.Print("Login error: {0}", ex.Message);
+                // ✅ Debug print aja, tidak pakai MessageBox
             }
 
             return user;
         }
+
     }
 }
