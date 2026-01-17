@@ -15,6 +15,8 @@ namespace Pendataan_Satwa_Liar.Model.Entities
         public string StatusKonservasi { get; set; }
         public int Populasi { get; set; }
 
+        public string Kelamin {  get; set; }
+
         // Untuk tampilan (join)
         public string NamaJenisSatwa { get; set; }
         public string NamaHabitat { get; set; }

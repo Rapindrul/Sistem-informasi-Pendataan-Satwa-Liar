@@ -1,4 +1,4 @@
-﻿namespace Pendataan_Satwa_Liar
+﻿namespace Pendataan_Satwa_Liar.View
 {
     partial class FormDataSatwa
     {
@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.tbSatwa = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbJenisSatwa = new System.Windows.Forms.ComboBox();
-            this.cbHabitat = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtCari = new System.Windows.Forms.TextBox();
             this.btnTambah = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
-            this.dataGridViewSatwa = new System.Windows.Forms.DataGridView();
+            this.dgvSatwa = new System.Windows.Forms.DataGridView();
             this.panelHeader = new System.Windows.Forms.FlowLayoutPanel();
             this.NameApp = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSatwa)).BeginInit();
+            this.btnCari = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ddFilter = new System.Windows.Forms.ComboBox();
+            this.btnKelolaJenis = new System.Windows.Forms.Button();
+            this.btnKelolaHabitat = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSatwa)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,95 +49,72 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 57);
+            this.label1.Location = new System.Drawing.Point(13, 66);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cari Satwa:";
             // 
-            // tbSatwa
+            // txtCari
             // 
-            this.tbSatwa.Location = new System.Drawing.Point(132, 61);
-            this.tbSatwa.Name = "tbSatwa";
-            this.tbSatwa.Size = new System.Drawing.Size(438, 22);
-            this.tbSatwa.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(940, 348);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Jenis Satwa :";
-            // 
-            // cbJenisSatwa
-            // 
-            this.cbJenisSatwa.FormattingEnabled = true;
-            this.cbJenisSatwa.Items.AddRange(new object[] {
-            "primata"});
-            this.cbJenisSatwa.Location = new System.Drawing.Point(1081, 349);
-            this.cbJenisSatwa.Name = "cbJenisSatwa";
-            this.cbJenisSatwa.Size = new System.Drawing.Size(108, 24);
-            this.cbJenisSatwa.TabIndex = 3;
-            // 
-            // cbHabitat
-            // 
-            this.cbHabitat.FormattingEnabled = true;
-            this.cbHabitat.Items.AddRange(new object[] {
-            "darat"});
-            this.cbHabitat.Location = new System.Drawing.Point(1081, 386);
-            this.cbHabitat.Name = "cbHabitat";
-            this.cbHabitat.Size = new System.Drawing.Size(108, 24);
-            this.cbHabitat.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(940, 382);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Habitat :";
+            this.txtCari.BackColor = System.Drawing.Color.White;
+            this.txtCari.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCari.Location = new System.Drawing.Point(135, 66);
+            this.txtCari.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCari.Name = "txtCari";
+            this.txtCari.Size = new System.Drawing.Size(576, 31);
+            this.txtCari.TabIndex = 1;
             // 
             // btnTambah
             // 
-            this.btnTambah.Location = new System.Drawing.Point(12, 95);
+            this.btnTambah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnTambah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTambah.ForeColor = System.Drawing.Color.White;
+            this.btnTambah.Location = new System.Drawing.Point(14, 223);
+            this.btnTambah.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTambah.Name = "btnTambah";
-            this.btnTambah.Size = new System.Drawing.Size(75, 23);
+            this.btnTambah.Size = new System.Drawing.Size(94, 36);
             this.btnTambah.TabIndex = 6;
             this.btnTambah.Text = "Tambah";
-            this.btnTambah.UseVisualStyleBackColor = true;
+            this.btnTambah.UseVisualStyleBackColor = false;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(93, 95);
+            this.btnEdit.BackColor = System.Drawing.Color.Coral;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(115, 223);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.Size = new System.Drawing.Size(94, 36);
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(174, 95);
+            this.btnHapus.BackColor = System.Drawing.Color.Crimson;
+            this.btnHapus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHapus.ForeColor = System.Drawing.Color.White;
+            this.btnHapus.Location = new System.Drawing.Point(216, 223);
+            this.btnHapus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHapus.Name = "btnHapus";
-            this.btnHapus.Size = new System.Drawing.Size(75, 23);
+            this.btnHapus.Size = new System.Drawing.Size(94, 36);
             this.btnHapus.TabIndex = 8;
             this.btnHapus.Text = "Hapus";
-            this.btnHapus.UseVisualStyleBackColor = true;
+            this.btnHapus.UseVisualStyleBackColor = false;
             // 
-            // dataGridViewSatwa
+            // dgvSatwa
             // 
-            this.dataGridViewSatwa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSatwa.Location = new System.Drawing.Point(12, 124);
-            this.dataGridViewSatwa.Name = "dataGridViewSatwa";
-            this.dataGridViewSatwa.RowHeadersWidth = 51;
-            this.dataGridViewSatwa.RowTemplate.Height = 24;
-            this.dataGridViewSatwa.Size = new System.Drawing.Size(639, 314);
-            this.dataGridViewSatwa.TabIndex = 10;
+            this.dgvSatwa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSatwa.Location = new System.Drawing.Point(14, 269);
+            this.dgvSatwa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvSatwa.Name = "dgvSatwa";
+            this.dgvSatwa.RowHeadersWidth = 51;
+            this.dgvSatwa.RowTemplate.Height = 24;
+            this.dgvSatwa.Size = new System.Drawing.Size(800, 415);
+            this.dgvSatwa.TabIndex = 10;
             // 
             // panelHeader
             // 
@@ -145,8 +122,9 @@
             this.panelHeader.Controls.Add(this.NameApp);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1304, 52);
+            this.panelHeader.Size = new System.Drawing.Size(839, 56);
             this.panelHeader.TabIndex = 11;
             // 
             // NameApp
@@ -154,41 +132,95 @@
             this.NameApp.BackColor = System.Drawing.Color.Transparent;
             this.NameApp.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameApp.ForeColor = System.Drawing.Color.White;
-            this.NameApp.Location = new System.Drawing.Point(3, 0);
+            this.NameApp.Location = new System.Drawing.Point(4, 0);
+            this.NameApp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NameApp.Name = "NameApp";
-            this.NameApp.Size = new System.Drawing.Size(307, 57);
+            this.NameApp.Size = new System.Drawing.Size(384, 89);
             this.NameApp.TabIndex = 7;
             this.NameApp.Text = "Data Satwa";
             // 
-            // button1
+            // btnCari
             // 
-            this.button1.Location = new System.Drawing.Point(576, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "cari";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCari.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnCari.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCari.ForeColor = System.Drawing.Color.White;
+            this.btnCari.Location = new System.Drawing.Point(720, 65);
+            this.btnCari.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCari.Name = "btnCari";
+            this.btnCari.Size = new System.Drawing.Size(94, 36);
+            this.btnCari.TabIndex = 12;
+            this.btnCari.Text = "cari";
+            this.btnCari.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 105);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(168, 25);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Cari berdasarkan:";
+            // 
+            // ddFilter
+            // 
+            this.ddFilter.FormattingEnabled = true;
+            this.ddFilter.Items.AddRange(new object[] {
+            "Nama",
+            "Habitat",
+            "Jenis"});
+            this.ddFilter.Location = new System.Drawing.Point(185, 102);
+            this.ddFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ddFilter.Name = "ddFilter";
+            this.ddFilter.Size = new System.Drawing.Size(203, 33);
+            this.ddFilter.TabIndex = 3;
+            // 
+            // btnKelolaJenis
+            // 
+            this.btnKelolaJenis.Location = new System.Drawing.Point(464, 223);
+            this.btnKelolaJenis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnKelolaJenis.Name = "btnKelolaJenis";
+            this.btnKelolaJenis.Size = new System.Drawing.Size(171, 36);
+            this.btnKelolaJenis.TabIndex = 13;
+            this.btnKelolaJenis.Text = "Kelola jenis satwa";
+            this.btnKelolaJenis.UseVisualStyleBackColor = true;
+            // 
+            // btnKelolaHabitat
+            // 
+            this.btnKelolaHabitat.Location = new System.Drawing.Point(643, 223);
+            this.btnKelolaHabitat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnKelolaHabitat.Name = "btnKelolaHabitat";
+            this.btnKelolaHabitat.Size = new System.Drawing.Size(171, 36);
+            this.btnKelolaHabitat.TabIndex = 14;
+            this.btnKelolaHabitat.Text = "Kelola Habitat";
+            this.btnKelolaHabitat.UseVisualStyleBackColor = true;
             // 
             // FormDataSatwa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1304, 450);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(839, 703);
+            this.Controls.Add(this.btnKelolaHabitat);
+            this.Controls.Add(this.btnKelolaJenis);
+            this.Controls.Add(this.btnCari);
             this.Controls.Add(this.panelHeader);
-            this.Controls.Add(this.dataGridViewSatwa);
+            this.Controls.Add(this.dgvSatwa);
             this.Controls.Add(this.btnHapus);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnTambah);
-            this.Controls.Add(this.cbHabitat);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbJenisSatwa);
+            this.Controls.Add(this.ddFilter);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbSatwa);
+            this.Controls.Add(this.txtCari);
             this.Controls.Add(this.label1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormDataSatwa";
             this.Text = "Form Data Satwa";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSatwa)).EndInit();
+            this.Load += new System.EventHandler(this.FormDataSatwa_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSatwa)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,18 +230,18 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbSatwa;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbJenisSatwa;
-        private System.Windows.Forms.ComboBox cbHabitat;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtCari;
         private System.Windows.Forms.Button btnTambah;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnHapus;
-        private System.Windows.Forms.DataGridView dataGridViewSatwa;
+        private System.Windows.Forms.DataGridView dgvSatwa;
         private System.Windows.Forms.FlowLayoutPanel panelHeader;
         private System.Windows.Forms.Label NameApp;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCari;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox ddFilter;
+        private System.Windows.Forms.Button btnKelolaJenis;
+        private System.Windows.Forms.Button btnKelolaHabitat;
     }
 }
 

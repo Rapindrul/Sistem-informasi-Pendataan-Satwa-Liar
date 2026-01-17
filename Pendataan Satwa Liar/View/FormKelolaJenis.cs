@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pendataan_Satwa_Liar
+namespace Pendataan_Satwa_Liar.View
 {
-    public partial class FormJenisSatwa : Form
+    public partial class FormKelolaJenis : Form
     {
-        public FormJenisSatwa()
+        public FormKelolaJenis()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormKelolaJenis_Load(object sender, EventArgs e)
         {
 
         }

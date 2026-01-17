@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar.View
 {
-    public partial class FormMain : Form
+    public partial class FormKelolaHabitat : Form
     {
-        public FormMain()
+        public FormKelolaHabitat()
         {
             InitializeComponent();
+        }
+
+        private void FormKelolaHabitat_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

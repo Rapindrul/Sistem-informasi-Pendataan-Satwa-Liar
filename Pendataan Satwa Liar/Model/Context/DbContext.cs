@@ -7,86 +7,33 @@ namespace Pendataan_Satwa_Liar.Model.Context
 {
     public class DbContext : IDisposable
     {
-        private SQLiteConnection _conn;
+        private readonly SQLiteConnection _conn;
 
-        public SQLiteConnection Conn
+        public SQLiteConnection Conn => _conn;
+
+        public DbContext()
         {
-            get { return _conn ?? (_conn = GetOpenConnection()); }
-        }
+            var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "Satwa.db");
 
-        private SQLiteConnection GetOpenConnection()
-        {
-            SQLiteConnection conn = null;
+            // kalau DB wajib ada, biarkan throw (lebih rapi daripada MessageBox di layer context)
+            if (!File.Exists(dbPath))
+                throw new FileNotFoundException($"Database tidak ditemukan: {dbPath}");
 
-            try
+            _conn = new SQLiteConnection($"Data Source={dbPath};Version=3;");
+            _conn.Open();
+
+            // SQLite: foreign key harus di-enable per connection
+            // enable foreign keys
+            using (var cmd = new SQLiteCommand("PRAGMA foreign_keys = ON;", _conn))
             {
-                // ✅ Cara 1: Relative path dari executable (di bin/Debug atau bin/Release)
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                string dbPath = Path.Combine(baseDir, "Database", "Satwa.db");
-
-                // ✅ Alternatif 2: Kalau mau cari di folder project saat development
-                // string projectDir = Directory.GetParent(baseDir).Parent.Parent.FullName;
-                // string dbPath = Path.Combine(projectDir, "Database", "Satwa.db");
-
-                // Debug print
-                System.Diagnostics.Debug.Print("Database path: {0}", dbPath);
-
-                // Pastikan folder Database ada
-                string folderPath = Path.GetDirectoryName(dbPath);
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                // Cek file exist
-                if (!File.Exists(dbPath))
-                {
-                    throw new FileNotFoundException($"Database tidak ditemukan di: {dbPath}");
-                }
-
-                // Connection string
-                string connectionString = $"Data Source={dbPath};Version=3;";
-
-                conn = new SQLiteConnection(connectionString);
-                conn.Open();
-
-                // Enable Foreign Key
-                using (var cmd = new SQLiteCommand("PRAGMA foreign_keys = ON;", conn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-
-                System.Diagnostics.Debug.Print("Database connected successfully!");
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.Print("Open Connection Error: {0}", ex.Message);
-                System.Windows.Forms.MessageBox.Show(
-                    $"Database Connection Error:\n{ex.Message}\n\nPastikan file Satwa.db ada di folder Database/",
-                    "Error",
-                    System.Windows.Forms.MessageBoxButtons.OK,
-                    System.Windows.Forms.MessageBoxIcon.Error
-                );
+                cmd.ExecuteNonQuery();
             }
 
-            return conn;
         }
 
         public void Dispose()
         {
-            if (_conn != null)
-            {
-                try
-                {
-                    if (_conn.State != ConnectionState.Closed) _conn.Close();
-                }
-                finally
-                {
-                    _conn.Dispose();
-                }
-            }
-
-            GC.SuppressFinalize(this);
+            _conn?.Dispose(); // Dispose otomatis melakukan close juga
         }
     }
 }

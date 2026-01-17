@@ -7,20 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
-namespace Pendataan_Satwa_Liar
+namespace Pendataan_Satwa_Liar.View
 {
-    public partial class FormHabitat : Form
+    public partial class FormTambahSatwa : Form
     {
-        public FormHabitat()
+        public FormTambahSatwa()
         {
             InitializeComponent();
-        }
-
-        private void Form_Habitat_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
