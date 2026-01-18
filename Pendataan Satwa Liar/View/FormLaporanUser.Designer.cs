@@ -1,6 +1,6 @@
 ﻿namespace Pendataan_Satwa_Liar.View
 {
-    partial class FormTambahLaporan
+    partial class FormLaporanUser
     {
         /// <summary>
         /// Required designer variable.

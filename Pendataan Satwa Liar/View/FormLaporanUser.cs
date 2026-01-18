@@ -4,11 +4,11 @@ using Pendataan_Satwa_Liar.Model.Entities;
 
 namespace Pendataan_Satwa_Liar.View
 {
-    public partial class FormTambahLaporan : Form
+    public partial class FormLaporanUser: Form
     {
         private readonly User _currentUser;
 
-        public FormTambahLaporan(User currentUser)
+        public FormLaporanUser(User currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
