@@ -10,6 +10,6 @@ namespace Pendataan_Satwa_Liar.Model.Entities
     {
         public int JenisSatwaId { get; set; }
         public string NamaJenis { get; set; }
-        public string Deskripsi { get; set; }
+
     }
 }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Pendataan_Satwa_Liar.Controller;
+using Pendataan_Satwa_Liar.Model.Entities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Pendataan_Satwa_Liar.Model.Entities;
 
 namespace Pendataan_Satwa_Liar.View
 {
@@ -172,6 +173,20 @@ namespace Pendataan_Satwa_Liar.View
         public void ClearSearch()
         {
             txtCari.Clear();
+        }
+
+        private void btnKelolaHabitat_Click(object sender, EventArgs e)
+        {
+            var form = new FormKelolaHabitat();
+            var controller = new HabitatController(form);
+            form.ShowDialog();
+        }
+
+        private void btnKelolaJenis_Click(object sender, EventArgs e)
+        {
+            var form = new FormKelolaJenis();
+            var controller = new JenisSatwaController(form);
+            form.ShowDialog();
         }
     }
 }
