@@ -165,6 +165,12 @@
     <Compile Include="View\FormLaporanUser.Designer.cs">
       <DependentUpon>FormLaporanUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormTambahLaporan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTambahLaporan.Designer.cs">
+      <DependentUpon>FormTambahLaporan.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormTambahSatwa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormKelolaJenis.resx">
       <DependentUpon>FormKelolaJenis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormLaporanAdmin.resx">
+      <DependentUpon>FormLaporanAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormLaporanUser.resx">
+      <DependentUpon>FormLaporanUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTambahLaporan.resx">
+      <DependentUpon>FormTambahLaporan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTambahSatwa.resx">
+      <DependentUpon>FormTambahSatwa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormUser.resx">
       <DependentUpon>FormUser.cs</DependentUpon>
