@@ -1,6 +1,6 @@
 ﻿namespace Pendataan_Satwa_Liar.View
 {
-    partial class FormLaporanUser
+    partial class FormTambahLaporan
     {
         /// <summary>
         /// Required designer variable.
@@ -26,14 +26,14 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormLaporanUser";
-        }
+
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel panelHeader;
+        private System.Windows.Forms.Label NameApp;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnTambah;
     }
 }
