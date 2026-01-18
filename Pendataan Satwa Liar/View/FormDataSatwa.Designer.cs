@@ -185,6 +185,7 @@
             this.btnKelolaJenis.TabIndex = 13;
             this.btnKelolaJenis.Text = "Kelola jenis satwa";
             this.btnKelolaJenis.UseVisualStyleBackColor = true;
+            this.btnKelolaJenis.Click += new System.EventHandler(this.btnKelolaJenis_Click);
             // 
             // btnKelolaHabitat
             // 
@@ -195,6 +196,7 @@
             this.btnKelolaHabitat.TabIndex = 14;
             this.btnKelolaHabitat.Text = "Kelola Habitat";
             this.btnKelolaHabitat.UseVisualStyleBackColor = true;
+            this.btnKelolaHabitat.Click += new System.EventHandler(this.btnKelolaHabitat_Click);
             // 
             // FormDataSatwa
             // 

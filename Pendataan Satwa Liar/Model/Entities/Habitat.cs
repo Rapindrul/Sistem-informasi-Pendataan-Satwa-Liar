@@ -10,8 +10,7 @@ namespace Pendataan_Satwa_Liar.Model.Entities
     {
         public int HabitatId { get; set; }
         public string NamaHabitat { get; set; }
-        public string Lokasi { get; set; }
-        public string Deskripsi { get; set; }
+
     }
 }
 
