@@ -106,11 +106,16 @@ namespace Pendataan_Satwa_Liar.Controller
                     return;
                 }
 
-                var updatedHabitat = _view.GetInputHabitat();
-                updatedHabitat.HabitatId = selected.HabitatId;
+                // ✅ UNTUK SEKARANG - Edit langsung dengan InputBox
+                var newNamaHabitat = Prompt.ShowDialog($"Edit Nama Habitat (sekarang: {selected.NamaHabitat})", "Edit Habitat");
+
+                if (string.IsNullOrWhiteSpace(newNamaHabitat))
+                    return; // User membatalkan
+
+                newNamaHabitat = newNamaHabitat.Trim();
 
                 // Validasi
-                if (string.IsNullOrWhiteSpace(updatedHabitat.NamaHabitat))
+                if (string.IsNullOrWhiteSpace(newNamaHabitat))
                 {
                     MessageBox.Show("Nama habitat wajib diisi!", "Validasi",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -118,20 +123,27 @@ namespace Pendataan_Satwa_Liar.Controller
                 }
 
                 // Cek duplikat nama (kecuali untuk diri sendiri)
-                var existing = _repo.GetByNama(updatedHabitat.NamaHabitat);
-                if (existing != null && existing.HabitatId != updatedHabitat.HabitatId)
+                var existing = _repo.GetByNama(newNamaHabitat);
+                if (existing != null && existing.HabitatId != selected.HabitatId)
                 {
-                    MessageBox.Show($"Habitat '{updatedHabitat.NamaHabitat}' sudah ada!", "Validasi",
+                    MessageBox.Show($"Habitat '{newNamaHabitat}' sudah ada!", "Validasi",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // Konfirmasi edit
-                var confirm = MessageBox.Show($"Edit habitat '{selected.NamaHabitat}'?", "Konfirmasi",
+                var confirm = MessageBox.Show($"Edit habitat '{selected.NamaHabitat}' menjadi '{newNamaHabitat}'?", "Konfirmasi",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (confirm == DialogResult.Yes)
                 {
+                    // Buat objek habitat yang diperbarui
+                    var updatedHabitat = new Habitat
+                    {
+                        HabitatId = selected.HabitatId,
+                        NamaHabitat = newNamaHabitat
+                    };
+
                     var result = _repo.Update(updatedHabitat);
 
                     if (result > 0)

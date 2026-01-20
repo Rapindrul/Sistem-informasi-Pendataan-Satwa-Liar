@@ -106,11 +106,16 @@ namespace Pendataan_Satwa_Liar.Controller
                     return;
                 }
 
-                var updatedJenisSatwa = _view.GetInputJenisSatwa();
-                updatedJenisSatwa.JenisSatwaId = selected.JenisSatwaId;
+                // ✅ UNTUK SEKARANG - Edit langsung dengan InputBox
+                var newNamaJenis = Prompt.ShowDialog($"Edit Nama Jenis Satwa (sekarang: {selected.NamaJenis})", "Edit Jenis Satwa");
+
+                if (string.IsNullOrWhiteSpace(newNamaJenis))
+                    return; // User membatalkan
+
+                newNamaJenis = newNamaJenis.Trim();
 
                 // Validasi
-                if (string.IsNullOrWhiteSpace(updatedJenisSatwa.NamaJenis))
+                if (string.IsNullOrWhiteSpace(newNamaJenis))
                 {
                     MessageBox.Show("Nama jenis satwa wajib diisi!", "Validasi",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -118,20 +123,27 @@ namespace Pendataan_Satwa_Liar.Controller
                 }
 
                 // Cek duplikat nama (kecuali untuk diri sendiri)
-                var existing = _repo.GetByNama(updatedJenisSatwa.NamaJenis);
-                if (existing != null && existing.JenisSatwaId != updatedJenisSatwa.JenisSatwaId)
+                var existing = _repo.GetByNama(newNamaJenis);
+                if (existing != null && existing.JenisSatwaId != selected.JenisSatwaId)
                 {
-                    MessageBox.Show($"Jenis satwa '{updatedJenisSatwa.NamaJenis}' sudah ada!", "Validasi",
+                    MessageBox.Show($"Jenis satwa '{newNamaJenis}' sudah ada!", "Validasi",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // Konfirmasi edit
-                var confirm = MessageBox.Show($"Edit jenis satwa '{selected.NamaJenis}'?", "Konfirmasi",
+                var confirm = MessageBox.Show($"Edit jenis satwa '{selected.NamaJenis}' menjadi '{newNamaJenis}'?", "Konfirmasi",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (confirm == DialogResult.Yes)
                 {
+                    // Buat objek jenis satwa yang diperbarui
+                    var updatedJenisSatwa = new JenisSatwa
+                    {
+                        JenisSatwaId = selected.JenisSatwaId,
+                        NamaJenis = newNamaJenis
+                    };
+
                     var result = _repo.Update(updatedJenisSatwa);
 
                     if (result > 0)
