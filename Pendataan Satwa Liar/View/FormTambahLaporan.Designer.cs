@@ -31,10 +31,10 @@
             this.panelHeader = new System.Windows.Forms.FlowLayoutPanel();
             this.NameApp = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnTambah = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,16 +72,6 @@
             this.label1.Text = "Deskripsi:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(130, 72);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(354, 202);
-            this.listBox1.TabIndex = 16;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -113,16 +103,25 @@
             this.btnTambah.Text = "Buat!";
             this.btnTambah.UseVisualStyleBackColor = false;
             // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Location = new System.Drawing.Point(130, 72);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(354, 211);
+            this.textBox2.TabIndex = 22;
+            // 
             // FormTambahLaporan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(512, 375);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.btnTambah);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 10.8F);
@@ -140,9 +139,9 @@
         private System.Windows.Forms.FlowLayoutPanel panelHeader;
         private System.Windows.Forms.Label NameApp;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnTambah;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
