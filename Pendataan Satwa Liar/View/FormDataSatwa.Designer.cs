@@ -38,7 +38,7 @@
             this.NameApp = new System.Windows.Forms.Label();
             this.btnCari = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.ddFilter = new System.Windows.Forms.ComboBox();
+            this.cmbKriteria = new System.Windows.Forms.ComboBox();
             this.btnKelolaJenis = new System.Windows.Forms.Button();
             this.btnKelolaHabitat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSatwa)).BeginInit();
@@ -163,18 +163,18 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Cari berdasarkan:";
             // 
-            // ddFilter
+            // cmbKriteria
             // 
-            this.ddFilter.FormattingEnabled = true;
-            this.ddFilter.Items.AddRange(new object[] {
+            this.cmbKriteria.FormattingEnabled = true;
+            this.cmbKriteria.Items.AddRange(new object[] {
             "Nama",
             "Habitat",
             "Jenis"});
-            this.ddFilter.Location = new System.Drawing.Point(185, 102);
-            this.ddFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ddFilter.Name = "ddFilter";
-            this.ddFilter.Size = new System.Drawing.Size(203, 33);
-            this.ddFilter.TabIndex = 3;
+            this.cmbKriteria.Location = new System.Drawing.Point(185, 102);
+            this.cmbKriteria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbKriteria.Name = "cmbKriteria";
+            this.cmbKriteria.Size = new System.Drawing.Size(203, 33);
+            this.cmbKriteria.TabIndex = 3;
             // 
             // btnKelolaJenis
             // 
@@ -185,7 +185,6 @@
             this.btnKelolaJenis.TabIndex = 13;
             this.btnKelolaJenis.Text = "Kelola jenis satwa";
             this.btnKelolaJenis.UseVisualStyleBackColor = true;
-            this.btnKelolaJenis.Click += new System.EventHandler(this.btnKelolaJenis_Click);
             // 
             // btnKelolaHabitat
             // 
@@ -196,7 +195,6 @@
             this.btnKelolaHabitat.TabIndex = 14;
             this.btnKelolaHabitat.Text = "Kelola Habitat";
             this.btnKelolaHabitat.UseVisualStyleBackColor = true;
-            this.btnKelolaHabitat.Click += new System.EventHandler(this.btnKelolaHabitat_Click);
             // 
             // FormDataSatwa
             // 
@@ -212,7 +210,7 @@
             this.Controls.Add(this.btnHapus);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnTambah);
-            this.Controls.Add(this.ddFilter);
+            this.Controls.Add(this.cmbKriteria);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCari);
             this.Controls.Add(this.label1);
@@ -221,7 +219,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormDataSatwa";
             this.Text = "Form Data Satwa";
-            this.Load += new System.EventHandler(this.FormDataSatwa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSatwa)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -241,7 +238,7 @@
         private System.Windows.Forms.Label NameApp;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox ddFilter;
+        private System.Windows.Forms.ComboBox cmbKriteria;
         private System.Windows.Forms.Button btnKelolaJenis;
         private System.Windows.Forms.Button btnKelolaHabitat;
     }

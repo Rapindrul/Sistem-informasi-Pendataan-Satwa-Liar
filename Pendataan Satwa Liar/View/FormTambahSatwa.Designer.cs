@@ -31,15 +31,15 @@
             this.panelHeader = new System.Windows.Forms.FlowLayoutPanel();
             this.NameApp = new System.Windows.Forms.Label();
             this.btnTambah = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNamaSatwa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ddFilter = new System.Windows.Forms.ComboBox();
+            this.cmbHabitat = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbJenis = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbJantan = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbBetina = new System.Windows.Forms.RadioButton();
             this.panelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,13 +79,14 @@
             this.btnTambah.Text = "Tambah";
             this.btnTambah.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtNamaSatwa
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(159, 71);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 31);
-            this.textBox1.TabIndex = 19;
+            this.txtNamaSatwa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNamaSatwa.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtNamaSatwa.Location = new System.Drawing.Point(159, 71);
+            this.txtNamaSatwa.Name = "txtNamaSatwa";
+            this.txtNamaSatwa.Size = new System.Drawing.Size(306, 31);
+            this.txtNamaSatwa.TabIndex = 19;
             // 
             // label1
             // 
@@ -97,18 +98,18 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Nama satwa: ";
             // 
-            // ddFilter
+            // cmbHabitat
             // 
-            this.ddFilter.FormattingEnabled = true;
-            this.ddFilter.Items.AddRange(new object[] {
+            this.cmbHabitat.FormattingEnabled = true;
+            this.cmbHabitat.Items.AddRange(new object[] {
             "Nama",
             "Habitat",
             "Jenis"});
-            this.ddFilter.Location = new System.Drawing.Point(91, 110);
-            this.ddFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ddFilter.Name = "ddFilter";
-            this.ddFilter.Size = new System.Drawing.Size(126, 33);
-            this.ddFilter.TabIndex = 22;
+            this.cmbHabitat.Location = new System.Drawing.Point(91, 110);
+            this.cmbHabitat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbHabitat.Name = "cmbHabitat";
+            this.cmbHabitat.Size = new System.Drawing.Size(126, 33);
+            this.cmbHabitat.TabIndex = 22;
             // 
             // label2
             // 
@@ -121,18 +122,18 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Habitat: ";
             // 
-            // comboBox1
+            // cmbJenis
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbJenis.FormattingEnabled = true;
+            this.cmbJenis.Items.AddRange(new object[] {
             "Nama",
             "Habitat",
             "Jenis"});
-            this.comboBox1.Location = new System.Drawing.Point(320, 113);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(144, 33);
-            this.comboBox1.TabIndex = 24;
+            this.cmbJenis.Location = new System.Drawing.Point(320, 113);
+            this.cmbJenis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbJenis.Name = "cmbJenis";
+            this.cmbJenis.Size = new System.Drawing.Size(144, 33);
+            this.cmbJenis.TabIndex = 24;
             // 
             // label3
             // 
@@ -145,16 +146,16 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "Jenis:";
             // 
-            // radioButton1
+            // rbJantan
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(110, 148);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 29);
-            this.radioButton1.TabIndex = 25;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Jantan";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbJantan.AutoSize = true;
+            this.rbJantan.Location = new System.Drawing.Point(110, 148);
+            this.rbJantan.Name = "rbJantan";
+            this.rbJantan.Size = new System.Drawing.Size(83, 29);
+            this.rbJantan.TabIndex = 25;
+            this.rbJantan.TabStop = true;
+            this.rbJantan.Text = "Jantan";
+            this.rbJantan.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -167,16 +168,16 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "Kelamin:";
             // 
-            // radioButton2
+            // rbBetina
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(218, 148);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(81, 29);
-            this.radioButton2.TabIndex = 27;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Betina";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbBetina.AutoSize = true;
+            this.rbBetina.Location = new System.Drawing.Point(218, 148);
+            this.rbBetina.Name = "rbBetina";
+            this.rbBetina.Size = new System.Drawing.Size(81, 29);
+            this.rbBetina.TabIndex = 27;
+            this.rbBetina.TabStop = true;
+            this.rbBetina.Text = "Betina";
+            this.rbBetina.UseVisualStyleBackColor = true;
             // 
             // FormTambahSatwa
             // 
@@ -184,15 +185,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(477, 217);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.rbBetina);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.rbJantan);
+            this.Controls.Add(this.cmbJenis);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.ddFilter);
+            this.Controls.Add(this.cmbHabitat);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnTambah);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNamaSatwa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelHeader);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -210,14 +211,14 @@
         private System.Windows.Forms.FlowLayoutPanel panelHeader;
         private System.Windows.Forms.Label NameApp;
         private System.Windows.Forms.Button btnTambah;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNamaSatwa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox ddFilter;
+        private System.Windows.Forms.ComboBox cmbHabitat;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbJenis;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbJantan;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbBetina;
     }
 }

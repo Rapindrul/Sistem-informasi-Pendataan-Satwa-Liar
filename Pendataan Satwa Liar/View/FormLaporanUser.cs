@@ -42,6 +42,8 @@ namespace Pendataan_Satwa_Liar.View
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnTambah = new System.Windows.Forms.Button();
+            this.btnBatal = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +96,7 @@ namespace Pendataan_Satwa_Liar.View
             this.btnTambah.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.btnTambah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTambah.ForeColor = System.Drawing.Color.White;
-            this.btnTambah.Location = new System.Drawing.Point(511, 83);
+            this.btnTambah.Location = new System.Drawing.Point(309, 83);
             this.btnTambah.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTambah.Name = "btnTambah";
             this.btnTambah.Size = new System.Drawing.Size(158, 36);
@@ -102,15 +104,43 @@ namespace Pendataan_Satwa_Liar.View
             this.btnTambah.Text = "Buat Laporan";
             this.btnTambah.UseVisualStyleBackColor = false;
             // 
-            // FormTambahLaporan
+            // btnBatal
+            // 
+            this.btnBatal.BackColor = System.Drawing.Color.Crimson;
+            this.btnBatal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBatal.ForeColor = System.Drawing.Color.White;
+            this.btnBatal.Location = new System.Drawing.Point(576, 83);
+            this.btnBatal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBatal.Name = "btnBatal";
+            this.btnBatal.Size = new System.Drawing.Size(94, 36);
+            this.btnBatal.TabIndex = 23;
+            this.btnBatal.Text = "Batalkan";
+            this.btnBatal.UseVisualStyleBackColor = false;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.Coral;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(475, 83);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(94, 36);
+            this.btnEdit.TabIndex = 22;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // FormLaporanUser
             // 
             this.ClientSize = new System.Drawing.Size(682, 498);
+            this.Controls.Add(this.btnBatal);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnTambah);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.Name = "FormTambahLaporan";
+            this.Name = "FormLaporanUser";
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -143,8 +143,13 @@ namespace Pendataan_Satwa_Liar.Controller
         private void BtnDataSatwa_Click(object sender, EventArgs e)
         {
             var dataSatwaForm = new FormDataSatwa(_currentUser);
+
+            // WAJIB: bikin controllernya supaya event tombol di-handle
+            var satwaController = new SatwaController(dataSatwaForm, _currentUser);
+
             dataSatwaForm.ShowDialog();
         }
+
 
         private void BtnLogout_Click(object sender, EventArgs e)
         {

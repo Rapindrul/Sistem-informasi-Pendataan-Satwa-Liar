@@ -4,27 +4,24 @@ using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar.View
 {
-    public partial class FormTambahSatwa : Form
+    public partial class FormEditSatwa : Form
     {
-        private readonly User _currentUser;
+        private Satwa _satwaAwal;
 
-        public event EventHandler BtnTambahClick;
+        public event EventHandler BtnSimpanClick;
 
-        public FormTambahSatwa(User currentUser)
+        public FormEditSatwa()
         {
             InitializeComponent();
-            _currentUser = currentUser;
-
-            btnTambah.Click += (s, e) => BtnTambahClick?.Invoke(s, e);
+            btnEdit.Click += (s, e) => BtnSimpanClick?.Invoke(s, e);
         }
 
         public void SetJenisList(object dataSource)
         {
             cmbJenis.DataSource = dataSource;
             cmbJenis.DisplayMember = "NamaJenis";
-            cmbJenis.ValueMember = "JenisSatwaId"; // <-- sesuai entity kamu
+            cmbJenis.ValueMember = "JenisSatwaId"; // sesuaikan entity kamu
         }
-
 
         public void SetHabitatList(object dataSource)
         {
@@ -33,12 +30,27 @@ namespace Pendataan_Satwa_Liar.View
             cmbHabitat.ValueMember = "HabitatId";
         }
 
+        public void LoadSatwa(Satwa s)
+        {
+            _satwaAwal = s;
+
+            txtNamaSatwa.Text = s.NamaSatwa;
+
+            // set SelectedValue setelah DataSource terpasang [web:227]
+            cmbJenis.SelectedValue = s.JenisSatwaId;
+            cmbHabitat.SelectedValue = s.HabitatId;
+
+            rbJantan.Checked = s.Kelamin == "Jantan";
+            rbBetina.Checked = s.Kelamin == "Betina";
+        }
+
         public Satwa GetInputSatwa()
         {
             var kelamin = rbJantan.Checked ? "Jantan" : (rbBetina.Checked ? "Betina" : "");
 
             return new Satwa
             {
+                SatwaId = _satwaAwal.SatwaId, // penting
                 NamaSatwa = txtNamaSatwa.Text.Trim(),
                 JenisSatwaId = Convert.ToInt32(cmbJenis.SelectedValue),
                 HabitatId = Convert.ToInt32(cmbHabitat.SelectedValue),
@@ -48,7 +60,7 @@ namespace Pendataan_Satwa_Liar.View
 
         public void CloseSuccess()
         {
-            this.DialogResult = DialogResult.OK; // return OK ke ShowDialog() [web:71]
+            this.DialogResult = DialogResult.OK; // supaya ShowDialog return OK [web:71]
             this.Close();
         }
 

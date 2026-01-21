@@ -1,117 +1,158 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Pendataan_Satwa_Liar.Model.Context;
 using Pendataan_Satwa_Liar.Model.Entities;
 using Pendataan_Satwa_Liar.Model.Repository;
+using Pendataan_Satwa_Liar.View;
+using System;
+using System.Windows.Forms;
 
 namespace Pendataan_Satwa_Liar.Controller
 {
-    internal class SatwaController
+    public class SatwaController
     {
-        private SatwaRepo satwaRepo;
-        private string currentUserRole = "";
+        private readonly FormDataSatwa _view;
+        private readonly User _currentUser;
 
-        public SatwaController()
+        private readonly DbContext _context;
+        private readonly SatwaRepo _satwaRepo;
+        private readonly JenisSatwaRepo _jenisRepo;
+        private readonly HabitatRepo _habitatRepo;
+
+        public SatwaController(FormDataSatwa view, User currentUser)
         {
-            satwaRepo = new SatwaRepo();
+            _view = view;
+            _currentUser = currentUser;
+
+            _context = new DbContext();
+
+            // Repo yang butuh context -> wajib lewat sini
+            _jenisRepo = new JenisSatwaRepo(_context);
+            _habitatRepo = new HabitatRepo(_context);
+
+            // SatwaRepo kamu:
+            // - Kalau SatwaRepo kamu masih model lama (buat koneksi sendiri), biarkan new SatwaRepo()
+            // - Kalau SatwaRepo kamu sudah diubah jadi SatwaRepo(DbContext), ganti jadi new SatwaRepo(_context)
+            _satwaRepo = new SatwaRepo();
+
+            _view.Load += View_Load;
+
+            _view.BtnTambahClick += BtnTambah_Click;
+            _view.BtnKelolaJenisClick += BtnKelolaJenis_Click;
+            _view.BtnKelolaHabitatClick += BtnKelolaHabitat_Click;
+            _view.BtnCariClick += BtnCari_Click;
+            _view.BtnEditClick += BtnEdit_Click;
+            _view.BtnHapusClick += BtnHapus_Click;
+
+
+            // penting: tutup koneksi saat form ditutup
+            _view.FormClosed += (s, e) => _context.Dispose(); // [web:107]
         }
 
-        public string CurrentUserRole
+        private void View_Load(object sender, EventArgs e)
         {
-            get { return currentUserRole; }
-            set { currentUserRole = value; }
+            // mode admin/non-admin
+            _view.SetAdminMode(string.Equals(_currentUser.Role, "admin", StringComparison.OrdinalIgnoreCase));
+
+            // load grid awal
+            _view.SetDataGridSatwa(_satwaRepo.GetAll());
         }
 
-        private bool IsAdmin()
+        private void BtnCari_Click(object sender, EventArgs e)
         {
-            return currentUserRole?.ToLower() == "admin";
-        }
+            var keyword = _view.GetSearchText();
+            var kriteria = _view.GetSearchCriteria(); // pastikan method ini ada
 
-        // CREATE: Tambah data satwa baru (Hanya Admin)
-        public bool TambahSatwa(Satwa satwa)
-        {
-            if (!IsAdmin())
-            {
-                throw new UnauthorizedAccessException("Hanya admin yang dapat menambah data satwa!");
-            }
-
-            // Validasi data sebelum menyimpan
-            if (string.IsNullOrWhiteSpace(satwa.NamaSatwa))
-                throw new ArgumentException("Nama satwa tidak boleh kosong!");
-            
-            if (satwa.Populasi < 0)
-                throw new ArgumentException("Populasi tidak boleh negatif!");
-
-            return satwaRepo.Create(satwa);
-        }
-
-        // READ: Ambil semua data satwa (Semua role bisa akses)
-        public List<Satwa> GetAllSatwa()
-        {
-            return satwaRepo.GetAll();
-        }
-
-        // READ: Ambil data satwa berdasarkan ID (Semua role bisa akses)
-        public Satwa GetSatwaById(int id)
-        {
-            return satwaRepo.GetById(id);
-        }
-
-        // UPDATE: Update data satwa (Hanya Admin)
-        public bool UpdateSatwa(Satwa satwa)
-        {
-            if (!IsAdmin())
-            {
-                throw new UnauthorizedAccessException("Hanya admin yang dapat mengupdate data satwa!");
-            }
-
-            // Validasi data
-            if (string.IsNullOrWhiteSpace(satwa.NamaSatwa))
-                throw new ArgumentException("Nama satwa tidak boleh kosong!");
-            
-            if (satwa.Populasi < 0)
-                throw new ArgumentException("Populasi tidak boleh negatif!");
-
-            return satwaRepo.Update(satwa);
-        }
-
-        // DELETE: Hapus data satwa berdasarkan ID (Hanya Admin)
-        public bool HapusSatwa(int id)
-        {
-            if (!IsAdmin())
-            {
-                throw new UnauthorizedAccessException("Hanya admin yang dapat menghapus data satwa!");
-            }
-
-            // Validasi: Cek apakah satwa ada sebelum menghapus
-            var satwa = satwaRepo.GetById(id);
-            if (satwa == null)
-                throw new ArgumentException("Data satwa tidak ditemukan!");
-
-            return satwaRepo.Delete(id);
-        }
-
-        // SEARCH: Cari satwa berdasarkan kriteria (Semua role bisa akses)
-        public List<Satwa> CariSatwa(string keyword, string kriteria)
-        {
             if (string.IsNullOrWhiteSpace(keyword))
-                return satwaRepo.GetAll(); // Jika keyword kosong, tampilkan semua
-
-            return satwaRepo.Search(keyword, kriteria);
+                _view.SetDataGridSatwa(_satwaRepo.GetAll());
+            else
+                _view.SetDataGridSatwa(_satwaRepo.Search(keyword, kriteria));
         }
 
-        // Method tambahan untuk pagination (opsional)
-        public List<Satwa> GetSatwaWithPagination(int page, int pageSize)
+        private void BtnKelolaJenis_Click(object sender, EventArgs e)
         {
-            if (page < 1) page = 1;
-            if (pageSize < 1) pageSize = 10;
+            using (var form = new FormKelolaJenis())
+            {
+                var controller = new JenisSatwaController(form);
+                form.ShowDialog();
+            }
 
-            return satwaRepo.GetWithPagination(page, pageSize);
+            // refresh grid satwa (biar NamaJenisSatwa ikut update)
+            _view.SetDataGridSatwa(_satwaRepo.GetAll());
         }
 
-        // Method untuk mendapatkan total jumlah data
-        public int GetTotalSatwaCount()
+        private void BtnKelolaHabitat_Click(object sender, EventArgs e)
         {
-            return satwaRepo.GetTotalCount();
+            using (var form = new FormKelolaHabitat())
+            {
+                var controller = new HabitatController(form);
+                form.ShowDialog();
+            }
+
+            _view.SetDataGridSatwa(_satwaRepo.GetAll());
         }
+
+        private void BtnTambah_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormTambahSatwa(_currentUser))
+            {
+                form.SetJenisList(_jenisRepo.GetAll());
+                form.SetHabitatList(_habitatRepo.GetAll());
+
+                // WAJIB: controller untuk handle BtnTambahClick di FormTambahSatwa
+                var tambahController = new TambahSatwaController(
+                    form,
+                    _currentUser,
+                    _satwaRepo,
+                    _jenisRepo,
+                    _habitatRepo
+                    );
+
+
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) // DialogResult dipakai untuk status dialog [web:170]
+                    _view.SetDataGridSatwa(_satwaRepo.GetAll());
+            }
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            var selected = _view.GetSelectedSatwa();
+            if (selected == null)
+            {
+                MessageBox.Show("Pilih data satwa yang ingin diedit!");
+                return;
+            }
+
+            using (var form = new FormEditSatwa())
+            {
+                form.SetJenisList(_jenisRepo.GetAll());
+                form.SetHabitatList(_habitatRepo.GetAll());
+
+                form.LoadSatwa(selected);
+
+                var editController = new EditSatwaController(form, _currentUser, _satwaRepo);
+
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) // OK dari DialogResult form edit [web:71]
+                    _view.SetDataGridSatwa(_satwaRepo.GetAll());
+            }
+        }
+
+        private void BtnHapus_Click(object sender, EventArgs e)
+        {
+            var selected = _view.GetSelectedSatwa();
+            if (selected == null)
+            {
+                MessageBox.Show("Pilih data satwa yang ingin dihapus!");
+                return;
+            }
+
+            if (!_view.Confirm($"Hapus satwa '{selected.NamaSatwa}'?")) return;
+
+            bool ok = _satwaRepo.Delete(selected.SatwaId);
+            if (ok) _view.SetDataGridSatwa(_satwaRepo.GetAll());
+            else MessageBox.Show("Gagal menghapus satwa.");
+        }
+
+
     }
 }

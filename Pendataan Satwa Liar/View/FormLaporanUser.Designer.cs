@@ -35,5 +35,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnTambah;
+        private System.Windows.Forms.Button btnBatal;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
